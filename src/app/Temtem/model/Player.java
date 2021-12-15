@@ -11,4 +11,13 @@ public class Player {
     ArrayList<Object> objects;
     ArrayList<Temtem> temtems;
 
+    public Player(int id, String name, String city, Date dischargeDate,
+                  ArrayList<Object> objects, ArrayList<Temtem> temtems) {
+        this.id = id;
+        this.name = name;
+        this.city = city;
+        this.dischargeDate = dischargeDate;
+        this.objects = objects;
+        this.temtems = temtems;
+    }
 }

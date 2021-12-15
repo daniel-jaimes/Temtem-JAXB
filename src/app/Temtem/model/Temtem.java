@@ -8,4 +8,10 @@ public class Temtem {
     private String type;
     ArrayList<Atribute> atributes;
 
+    public Temtem(int id, String name, String type, ArrayList<Atribute> atributes) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.atributes = atributes;
+    }
 }
