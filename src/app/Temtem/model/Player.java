@@ -1,8 +1,12 @@
 package model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 import java.util.Date;
 
+@XmlRootElement(name="Jugador")
+@XmlType(propOrder = {"id", "nombre", "ciudad", "alta"})
 public class Player {
     private int id;
     private String name;
@@ -20,4 +24,5 @@ public class Player {
         this.objects = objects;
         this.temtems = temtems;
     }
+
 }
