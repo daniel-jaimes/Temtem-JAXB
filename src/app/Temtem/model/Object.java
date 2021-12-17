@@ -13,5 +13,4 @@ public class Object {
         this.name = name;
         this.quantity = quantity;
     }
-    @
 }
