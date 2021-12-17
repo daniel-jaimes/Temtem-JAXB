@@ -1,75 +1,70 @@
 package model;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
-import java.util.Date;
 
 @XmlRootElement(name="jugador")
-@XmlType(propOrder = {"id", "nombre", "ciudad", "alta"})
+@XmlType(propOrder = {"id", "name", "discharged", "objects", "temtems"})
 public class Player {
-    private int id;
+    @XmlAttribute(name="id")
+    private String id;
+    @XmlElement(name="nombre")
     private String name;
-    private String city;
-    private Date dischargeDate;
-    ArrayList<Object> objects;
-    ArrayList<Temtem> temtems;
-
-    public Player(int id, String name, String city, Date dischargeDate,
-                  ArrayList<Object> objects, ArrayList<Temtem> temtems) {
+    @XmlElement(name="alta")
+    private Discharged discharged;
+    @XmlElementWrapper(name="objetos")
+    @XmlElement(name="objeto")
+    private ArrayList<Object> objects;
+    @XmlElementWrapper(name="temtems")
+    @XmlElement(name="temtem")
+    private ArrayList<Temtem> temtems;
+    public Player() {}
+    public Player(String id, String name, Discharged discharged) {
         this.id = id;
         this.name = name;
-        this.city = city;
-        this.dischargeDate = dischargeDate;
-        this.objects = objects;
-        this.temtems = temtems;
+        this.discharged = discharged;
     }
-    @XmlAttribute(name="id")
-    public int getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    @XmlElement(name="nombre")
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Discharged getDischarged(){
+        return discharged;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-    @XmlElement(name="alta")
-    public Date getDischargeDate() {
-        return dischargeDate;
-    }
-
-    public void setDischargeDate(Date dischargeDate) {
-        this.dischargeDate = dischargeDate;
-    }
-    @XmlElementWrapper(name="objetos")
     public ArrayList<Object> getObjects() {
         return objects;
     }
 
-    public void setObjects(ArrayList<Object> objects) {
-        this.objects = objects;
-    }
-    @XmlElementWrapper(name="temtems")
     public ArrayList<Temtem> getTemtems() {
         return temtems;
     }
 
-    public void setTemtems(ArrayList<Temtem> temtems) {
-        this.temtems = temtems;
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", discharged=" + discharged +
+                ", objectsQ=" + sumObjectsQuantities() +
+                ", temtemsQ=" + temtems.size() +
+                '}';
+
+    }
+
+    private int sumObjectsQuantities() {
+        return objects.stream()
+                .mapToInt(o -> Integer.parseInt(o.getQuantity()))
+                .sum();
     }
 
 }

@@ -1,33 +1,35 @@
 package model;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
-@XmlRootElement(name="atributo")
-@XmlType(propOrder = {"id", "atributo",})
+@XmlType(propOrder = {"id"})
 public class Atribute {
-    private int id;
-    private int value;
+    @XmlAttribute(name="id")
+    private String id;
+    @XmlValue
+    private String value;
 
-    public Atribute(int id, int value) {
+    public Atribute(){
+
+    }
+    public Atribute(String id, String value) {
         this.id = id;
         this.value = value;
     }
-    @XmlAttribute(name="id")
-    public int getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    @XmlAttribute(name="atributo")
-    public int getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    @Override
+    public String toString() {
+        return "Atribute{" +
+                "id='" + id + '\'' +
+                ", value='" + value + '\'' +
+                '}';
     }
 }

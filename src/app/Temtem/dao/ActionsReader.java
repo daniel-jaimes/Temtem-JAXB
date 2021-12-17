@@ -10,12 +10,17 @@ public class ActionsReader {
     public ActionsReader(){
         System.out.println("LEIEDO DATOS...");
         try {
-            actionReader = new BufferedReader(new FileReader("files/actions.txt"));
+            actionReader = new BufferedReader(new FileReader("files/acciones.txt"));
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
     public String readLine(){
+        try {
+            return actionReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "";
     }
     public void close(){

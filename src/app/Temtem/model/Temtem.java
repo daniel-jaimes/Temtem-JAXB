@@ -1,54 +1,56 @@
 package model;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.util.ArrayList;
 
 @XmlRootElement(name="temtem")
-@XmlType(propOrder = {"id", "nombre", "tipo"})
+@XmlType(propOrder = {"id", "name", "type", "atributes"})
 public class Temtem {
-    private int id;
+    @XmlAttribute(name="id")
+    private String id;
+    @XmlElement(name="nombre")
     private String name;
+    @XmlElement(name="tipo")
     private String type;
+    @XmlElement(name="atributo")
     ArrayList<Atribute> atributes;
 
-    public Temtem(int id, String name, String type, ArrayList<Atribute> atributes) {
+    public Temtem(){
+
+    }
+    public Temtem(String id, String name, String type) {
         this.id = id;
         this.name = name;
         this.type = type;
-        this.atributes = atributes;
+        atributes = new ArrayList<>();
     }
-    @XmlAttribute(name="id")
-    public int getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    @XmlAttribute(name="nombre")
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    @XmlAttribute(name="tipo")
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public ArrayList<Atribute> getAtributes() {
         return atributes;
     }
 
-    public void setAtributes(ArrayList<Atribute> atributes) {
-        this.atributes = atributes;
+    @Override
+    public String toString() {
+        return "Temtem{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", atributes=" + atributes +
+                '}';
     }
 }
